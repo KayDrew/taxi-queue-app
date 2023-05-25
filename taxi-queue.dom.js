@@ -15,9 +15,21 @@ let taxiLeave=document.querySelector(".depart");
 const taxiQueue = TaxiQueue();
 
 // DOM events
-passengerCount.innerHTML=taxiQueue.queueLength();
-taxiCount.innerHTML=taxiQueue.taxiQueueLength();
+if(passengers===null){
+passengerCount.innerHTML=0;
+}
 
+else{
+passengerCount.innerHTML=passengers;
+}
+
+if(taxis===null){
+taxiCount.innerHTML=0;
+}
+
+else{
+taxiCount.innerHTML=taxis;
+}
 function join(){
 	
 taxiQueue.joinQueue();
