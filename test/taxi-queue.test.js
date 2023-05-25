@@ -187,4 +187,48 @@ taxis=0;
 		assert.equal(15, taxiQueue.queueLength());
 
 	});
+	
+	it ("should check if there at least 12 passengers and alert the taxi driver with the appropriate error message", function() {
+
+const taxiQueue = TaxiQueue();
+passengers=0;
+taxis=0;
+
+taxiQueue.joinQueue(); 
+taxiQueue.joinTaxiQueue();
+
+assert.equal("There are not enough passengers for you at the moment",taxiQueue.getInfoMessage());
+
+
+});
+
+it ("should check if there is at least 1 taxi before a taxi can depart and return appropriate error message", function() {
+
+const taxiQueue = TaxiQueue();
+passengers=0;
+taxis=0;
+
+taxiQueue.taxiDepart()
+
+assert.equal("No taxis available",taxiQueue.getErrorMessage());
+
+
+});
+
+it ("should check if there are at least 12  passengers before a taxi can depart and return appropriate error message", function() {
+
+const taxiQueue = TaxiQueue();
+passengers=0;
+taxis=0;
+
+taxiQueue.joinTaxiQueue();
+taxiQueue.taxiDepart()
+
+assert.equal("Passengers  less than 12. Taxi cannot depart",taxiQueue.getErrorMessage());
+
+
+});
+
+
+
 });

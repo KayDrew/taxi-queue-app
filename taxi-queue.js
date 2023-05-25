@@ -1,6 +1,7 @@
 let taxis=localStorage.getItem("taxis");
 let passengers= localStorage.getItem("passengers");
-
+let errorMessage="";
+let infoMessage=""
 
 function TaxiQueue() {
 
@@ -34,7 +35,18 @@ localStorage.setItem("passengers",passengers);
 taxis=1;
 }
 else{
+	
+	if(passengers<12 ){
+
+infoMessage="There are not enough passengers for you at the moment";
+}
+
+else{
+infoMessage="";
+}
 taxis++;
+
+
 }
 
 localStorage.setItem("taxis",taxis);
@@ -62,12 +74,34 @@ localStorage.setItem("taxis",taxis);
 
 passengers-=12;
 localStorage.setItem("passengers",passengers);
+errorMessage="";
+}
+
+else{
+
+errorMessage="Passengers  less than 12. Taxi cannot depart";
 }
 
 }
 
+else{
+errorMessage="No taxis available";
+
+}
 
 	}
+	
+	function  getErrorMessage(){
+
+return errorMessage;
+
+}
+
+function getInfoMessage(){
+
+return infoMessage;
+
+}
 
 	return {
 		joinQueue,
@@ -75,6 +109,8 @@ localStorage.setItem("passengers",passengers);
 		joinTaxiQueue,
 		queueLength,
 		taxiQueueLength,
-		taxiDepart
+		taxiDepart,
+		getErrorMessage,
+		getInfoMessage
 	}
 }
